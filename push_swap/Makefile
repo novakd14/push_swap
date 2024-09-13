@@ -7,7 +7,7 @@ SRCS_DIR = ../push_swap/
 TEST_DIR = ../unity_test/
 
 NAME = push_swap
-SRCS = main.c input.c clean.c rules.c sort.c
+SRCS = main.c input.c clean.c rules.c sort.c bubble_sort.c
 HEAD = push_swap.h
 OBJS = $(SRCS:.c=.o)
 
@@ -29,11 +29,17 @@ re: fclean all
 
 test: $(NAME)
 	clear
-	-./$(NAME) 42 -8 21 -2 -1 0
-	-./$(NAME) -8 -2 -1 42 0 21
-	-./$(NAME) -8 -2 -1 21 0 42
-	-./$(NAME) -8 -2 -1 0 42 21
-	-./$(NAME) -8 -2 -1 0 21 42
+	-./$(NAME)
+	-./$(NAME) 42
+	-./$(NAME) 42 0
+	-./$(NAME) 42 100
+	-./$(NAME) 42 0 1
+	-./$(NAME) 42 0 100
+	-./$(NAME) 42 0 1 2
+	-./$(NAME) 42 0 1 100
+	-./$(NAME) 42 0 1 2 3
+	-./$(NAME) 42 0 1 2 100
+
 
 norm:
 	norminette
