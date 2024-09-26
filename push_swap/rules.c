@@ -6,7 +6,7 @@
 /*   By: dnovak <dnovak@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 20:31:24 by dnovak            #+#    #+#             */
-/*   Updated: 2024/09/11 22:19:30 by dnovak           ###   ########.fr       */
+/*   Updated: 2024/09/14 21:46:16 by dnovak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,8 @@ void	ps_rotate(t_stack *stack)
 	ft_printf("r%c\n", stack->name);
 }
 
-// Shift down all elements of stack by 1. The last element becomes the first one.
+// Shift down all elements of stack by 1. The last element becomes
+// the first one.
 void	ps_rev_rotate(t_stack *stack)
 {
 	t_list	*second_last;

@@ -3,13 +3,11 @@ CFLAGS = -Wall -Wextra -Werror -g -D ERROR_MESSAGES
 CLIB_DIR = libft
 CLIB = ft
 
-SRCS_DIR = ../push_swap/
-TEST_DIR = ../unity_test/
-
 NAME = push_swap
-SRCS = main.c input.c clean.c rules.c sort.c bubble_sort.c
+SRCS = main.c input.c clean.c rules.c sort.c
+ALGO = adv_bubble_sort.c selection_sort.c
 HEAD = push_swap.h
-OBJS = $(SRCS:.c=.o)
+OBJS = $(SRCS:.c=.o) $(ALGO:.c=.o)
 
 .PHONY: all clean fclean bclean re test ftest memleak
 
@@ -30,6 +28,7 @@ re: fclean all
 test: $(NAME)
 	clear
 	-./$(NAME)
+	-./$(NAME) 0 one 2 3
 	-./$(NAME) 42
 	-./$(NAME) 42 0
 	-./$(NAME) 42 100
@@ -39,6 +38,10 @@ test: $(NAME)
 	-./$(NAME) 42 0 1 100
 	-./$(NAME) 42 0 1 2 3
 	-./$(NAME) 42 0 1 2 100
+	-./$(NAME) 42 0 84 2 100
+	-./$(NAME) 42 84 0 5 2 100
+	-./$(NAME) 42 84 2 100
+	-./$(NAME) 17 93 46 22 50 96 11 98 32 85 | wc -l
 
 
 norm:

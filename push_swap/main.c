@@ -6,7 +6,7 @@
 /*   By: dnovak <dnovak@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/17 10:41:23 by dnovak            #+#    #+#             */
-/*   Updated: 2024/09/13 15:46:23 by dnovak           ###   ########.fr       */
+/*   Updated: 2024/09/15 20:49:37 by dnovak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,6 @@ int	main(int argc, char **argv)
 		error_exit(stack_a);
 	sort(stack_a, stack_b);
 	print_stack(stack_a->stack);
-	ft_printf("\n");
 	free_all(stack_a);
 	free_all(stack_b);
 	return (0);
