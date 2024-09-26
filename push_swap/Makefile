@@ -11,7 +11,7 @@ OBJS = $(SRCS:.c=.o) $(ALGO:.c=.o)
 
 .PHONY: all clean fclean bclean re test ftest memleak
 
-all: test
+all: $(NAME)
 
 $(NAME): $(OBJS)
 	make -C $(CLIB_DIR) bonus
