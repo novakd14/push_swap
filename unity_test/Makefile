@@ -7,7 +7,7 @@ SRCS_DIR = ../push_swap/
 TEST_DIR = ../unity_test/
 
 NAME = test.out
-SRCS = input.c clean.c rules.c sort.c
+SRCS = input.c clean.c rules.c sort.c adv_bubble_sort.c
 HEAD = test_push_swap.h
 UNIT = unity.c
 TEST = test_push_swap.c redef.c

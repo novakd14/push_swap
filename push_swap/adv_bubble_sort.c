@@ -1,23 +1,56 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   bubble_sort.c                                      :+:      :+:    :+:   */
+/*   adv_bubble_sort.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dnovak <dnovak@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/13 14:46:54 by dnovak            #+#    #+#             */
-/*   Updated: 2024/09/13 17:50:35 by dnovak           ###   ########.fr       */
+/*   Updated: 2024/09/15 18:46:41 by dnovak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	bubble_sort(int size, t_stack *stack_a, t_stack *stack_b)
+static void	move_pick(int pick_index, int i, t_stack *stack_a, t_stack *stack_b)
+{
+	int	j;
+
+	if (i - pick_index > 2)
+	{
+		j = pick_index + 1;
+		ps_push(stack_a, stack_b);
+		while (j < i)
+		{
+			ps_rotate(stack_a);
+			j++;
+		}
+		ps_push(stack_b, stack_a);
+		ps_rotate(stack_a);
+	}
+	else if (i - pick_index == 2)
+	{
+		ps_swap(stack_a);
+		ps_rotate(stack_a);
+		ps_rotate(stack_a);
+	}
+	else
+		ps_rotate(stack_a);
+}
+
+static t_list	*new_curr_stack(t_list *curr_stack, t_stack *stack_a)
+{
+	if (curr_stack->next == NULL)
+		return (stack_a->stack);
+	else
+		return (curr_stack->next);
+}
+
+void	adv_bubble_sort(int size, t_stack *stack_a, t_stack *stack_b)
 {
 	int		pick_index;
 	int		pick;
 	int		i;
-	int		j;
 	t_list	*curr_stack;
 
 	pick_index = 0;
@@ -28,55 +61,14 @@ void	bubble_sort(int size, t_stack *stack_a, t_stack *stack_b)
 	{
 		if (pick < *((int *)curr_stack->content))
 		{
-			ft_printf("Found bigger number\n");
-			if (i - pick_index > 2)
-			{
-				j = pick_index + 1;
-				ps_push(stack_a, stack_b);
-				while (j < i)
-				{
-					ps_rotate(stack_a);
-					j++;
-				}
-				ps_push(stack_b, stack_a);
-				ps_rotate(stack_a);
-			}
-			else if (i - pick_index == 2)
-			{
-				ps_swap(stack_a);
-				ps_rotate(stack_a);
-				ps_rotate(stack_a);
-			}
-			break ;
+			move_pick(pick_index, i, stack_a, stack_b);
 			pick_index = i;
 			pick = *((int *)stack_a->stack->content);
 			curr_stack = stack_a->stack->next;
 		}
 		else
-		{
-			if (curr_stack->next == NULL)
-				curr_stack = stack_a->stack;
-			else
-				curr_stack = curr_stack->next;
-			ft_printf("Next\n");
-		}
+			curr_stack = new_curr_stack(curr_stack, stack_a);
 		i++;
 	}
-	if (stack_b)
-		return ;
-	// if (i - pick_index > 1)
-	// {
-	// 	j = pick_index;
-	// 	ps_push(stack_a, stack_b);
-	// 	while (j < i)
-	// 	{
-	// 		ps_rotate(stack_a);
-	// 		j++;
-	// 	}
-	// 	ps_push(stack_b, stack_a);
-	// 	ps_rotate(stack_a);
-	// }
-	// curr_stack = stack_a->stack->next;
-	// pick = *((int *)stack_a->stack->content);
-	// pick_index = i;
+	move_pick(pick_index, size, stack_a, stack_b);
 }
