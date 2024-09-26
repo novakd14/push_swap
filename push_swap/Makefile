@@ -1,11 +1,11 @@
 CC = cc
-CFLAGS = -Wall -Wextra -Werror -g -D ERROR_MESSAGES
+CFLAGS = -Wall -Wextra -Werror -g
 CLIB_DIR = libft
 CLIB = ft
 
 NAME = push_swap
 SRCS = main.c input.c clean.c rules.c sort.c
-ALGO = adv_bubble_sort.c selection_sort.c
+ALGO = adv_bubble_sort.c selection_sort.c minimalist_sort.c
 HEAD = push_swap.h
 OBJS = $(SRCS:.c=.o) $(ALGO:.c=.o)
 

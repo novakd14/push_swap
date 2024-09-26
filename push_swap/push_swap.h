@@ -6,7 +6,7 @@
 /*   By: dnovak <dnovak@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/20 14:51:19 by dnovak            #+#    #+#             */
-/*   Updated: 2024/09/14 13:28:29 by dnovak           ###   ########.fr       */
+/*   Updated: 2024/09/26 14:56:04 by dnovak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,5 +36,6 @@ void		sort(t_stack *stack_a, t_stack *stack_b);
 // Sort algorithms
 void		adv_bubble_sort(int size, t_stack *stack_a, t_stack *stack_b);
 void		selection_sort(int size, t_stack *stack_a, t_stack *stack_b);
+void		minimalist_sort(int size, t_stack *stack_a, t_stack *stack_b);
 
 #endif // PUSH_SWAP_H
