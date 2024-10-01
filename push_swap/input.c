@@ -6,7 +6,7 @@
 /*   By: dnovak <dnovak@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/20 14:43:38 by dnovak            #+#    #+#             */
-/*   Updated: 2024/09/09 22:32:47 by dnovak           ###   ########.fr       */
+/*   Updated: 2024/09/30 12:46:24 by dnovak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,19 @@ static void	check_int(char *nptr, t_stack *stack)
 	}
 }
 
+static int	stack_len(t_list *stack)
+{
+	int	len;
+
+	len = 0;
+	while (stack != NULL)
+	{
+		len++;
+		stack = stack->next;
+	}
+	return (len);
+}
+
 void	input(int argc, char **argv, t_stack *a_stack)
 {
 	int		i;
@@ -71,4 +84,5 @@ void	input(int argc, char **argv, t_stack *a_stack)
 		new_node = ft_lstnew(content);
 		ft_lstadd_back(&(a_stack->stack), new_node);
 	}
+	a_stack->size = stack_len(a_stack->stack);
 }

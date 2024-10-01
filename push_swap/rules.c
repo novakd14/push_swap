@@ -6,7 +6,7 @@
 /*   By: dnovak <dnovak@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 20:31:24 by dnovak            #+#    #+#             */
-/*   Updated: 2024/09/14 21:46:16 by dnovak           ###   ########.fr       */
+/*   Updated: 2024/09/30 12:51:47 by dnovak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@ void	ps_push(t_stack *from, t_stack *to)
 	from->stack = move->next;
 	move->next = to->stack;
 	to->stack = move;
+	from->size--;
+	to->size++;
 	ft_printf("p%c\n", to->name);
 }
 
