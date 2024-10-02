@@ -5,7 +5,7 @@ CLIB = ft
 
 NAME = push_swap
 BON_NAME = checker_linux
-SRCS = main.c input.c clean.c rules.c sort.c choose_to_move.c
+SRCS = main.c input.c clean.c rules.c rules_all.c sort.c choose_to_move.c
 ALGO = adv_bubble_sort.c selection_sort.c minimalist_sort.c
 HEAD = push_swap.h
 OBJS = $(SRCS:.c=.o) $(ALGO:.c=.o)
