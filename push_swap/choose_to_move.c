@@ -6,7 +6,7 @@
 /*   By: dnovak <dnovak@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 15:26:34 by dnovak            #+#    #+#             */
-/*   Updated: 2024/09/30 15:30:09 by dnovak           ###   ########.fr       */
+/*   Updated: 2024/10/02 14:39:56 by dnovak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,16 +55,6 @@ static int	check_order(int start, t_list *stack_a, t_list *stack_b)
 	return (order);
 }
 
-static void	move_to_position(int position, t_stack *stack)
-{
-	if (position <= stack->size / 2)
-		while (position-- > 0)
-			ps_rotate(stack);
-	else
-		while (position++ < stack->size)
-			ps_rev_rotate(stack);
-}
-
 int	choose_to_move(int start, t_stack *stack_a, t_stack *stack_b)
 {
 	t_move	curr_move;
@@ -90,6 +80,6 @@ int	choose_to_move(int start, t_stack *stack_a, t_stack *stack_b)
 		position = position->next;
 		curr_move.position++;
 	}
-	move_to_position(min_move.position, stack_b);
+	move_to_positions(min_move.position, min_move.order, stack_a, stack_b);
 	return (min_move.order);
 }
