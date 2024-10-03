@@ -1,31 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   rules_all.c                                        :+:      :+:    :+:   */
+/*   rules_push.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dnovak <dnovak@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/02 13:30:13 by dnovak            #+#    #+#             */
-/*   Updated: 2024/10/02 13:32:30 by dnovak           ###   ########.fr       */
+/*   Created: 2024/09/09 20:31:24 by dnovak            #+#    #+#             */
+/*   Updated: 2024/10/02 15:07:03 by dnovak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	ps_swap_all(t_stack *stack_a, t_stack *stack_b)
+void	ps_push(t_stack *from, t_stack *to)
 {
-	ps_swap(stack_a);
-	ps_swap(stack_b);
-}
+	t_list	*move;
 
-void	ps_rotate_all(t_stack *stack_a, t_stack *stack_b)
-{
-	ps_rotate(stack_a);
-	ps_rotate(stack_b);
-}
-
-void	ps_rev_rotate_all(t_stack *stack_a, t_stack *stack_b)
-{
-	ps_rev_rotate(stack_a);
-	ps_rev_rotate(stack_b);
+	if (from->stack == NULL)
+		return ;
+	move = from->stack;
+	from->stack = move->next;
+	move->next = to->stack;
+	to->stack = move;
+	from->size--;
+	to->size++;
+	ft_printf("p%c\n", to->name);
 }

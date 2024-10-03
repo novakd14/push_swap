@@ -6,7 +6,7 @@
 /*   By: dnovak <dnovak@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/17 10:41:23 by dnovak            #+#    #+#             */
-/*   Updated: 2024/09/30 15:23:08 by dnovak           ###   ########.fr       */
+/*   Updated: 2024/10/02 14:21:11 by dnovak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,17 +25,6 @@ static int	init_stack(t_stack **stack, char name)
 	(*stack)->size = 0;
 	return (1);
 }
-
-// static void	print_stack(t_list *stack)
-// {
-// 	ft_printf("\t   ");
-// 	while (stack != NULL)
-// 	{
-// 		ft_printf(" %i", *((int *)stack->content));
-// 		stack = stack->next;
-// 	}
-// 	ft_printf("\n");
-// }
 
 int	main(int argc, char **argv)
 {

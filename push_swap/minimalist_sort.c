@@ -6,7 +6,7 @@
 /*   By: dnovak <dnovak@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 14:40:42 by dnovak            #+#    #+#             */
-/*   Updated: 2024/09/30 15:52:01 by dnovak           ###   ########.fr       */
+/*   Updated: 2024/10/02 15:20:34 by dnovak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,6 @@ static int	check_if_bigger(t_stack *small, t_stack *big)
 void	minimalist_sort(t_stack *stack_a, t_stack *stack_b)
 {
 	int	start;
-	int	i;
 	int	order;
 
 	while (stack_a->size > 3)
@@ -67,13 +66,6 @@ void	minimalist_sort(t_stack *stack_a, t_stack *stack_b)
 	while (stack_b->stack != NULL)
 	{
 		order = choose_to_move(start, stack_a, stack_b);
-		i = order;
-		if (i <= stack_a->size / 2)
-			while (i-- > 0)
-				ps_rotate(stack_a);
-		else
-			while (i++ < stack_a->size)
-				ps_rev_rotate(stack_a);
 		start = (start + stack_a->size - order) % (stack_a->size);
 		if (start != 0 || check_if_bigger(stack_a, stack_b))
 			start++;
