@@ -6,7 +6,7 @@
 /*   By: dnovak <dnovak@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/20 14:51:19 by dnovak            #+#    #+#             */
-/*   Updated: 2024/10/02 13:38:22 by dnovak           ###   ########.fr       */
+/*   Updated: 2024/10/02 15:21:12 by dnovak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@ void		error_exit(t_stack *stack);
 void		input(int argc, char **argv, t_stack *stack);
 int			choose_to_move(int start, t_stack *stack_a, t_stack *stack_b);
 void		sort(t_stack *stack_a, t_stack *stack_b);
+void		move_to_positions(int position, int order, t_stack *stack_a,
+				t_stack *stack_b);
 
 // Rules
 void		ps_swap(t_stack *stack);
@@ -49,5 +51,8 @@ void		ps_rev_rotate_all(t_stack *stack_a, t_stack *stack_b);
 void		adv_bubble_sort(int size, t_stack *stack_a, t_stack *stack_b);
 void		selection_sort(int size, t_stack *stack_a, t_stack *stack_b);
 void		minimalist_sort(t_stack *stack_a, t_stack *stack_b);
+
+// Utils
+void		print_stack(t_list *stack);
 
 #endif // PUSH_SWAP_H

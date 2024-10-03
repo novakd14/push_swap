@@ -5,7 +5,7 @@ CLIB = ft
 
 NAME = push_swap
 BON_NAME = checker_linux
-SRCS = main.c input.c clean.c rules.c rules_all.c sort.c choose_to_move.c
+SRCS = main.c input.c clean.c rules_swap.c rules_push.c rules_rotate.c rules_rev_rotate.c sort.c choose_to_move.c move_to_positions.c utils.c
 ALGO = adv_bubble_sort.c selection_sort.c minimalist_sort.c
 HEAD = push_swap.h
 OBJS = $(SRCS:.c=.o) $(ALGO:.c=.o)
@@ -63,9 +63,11 @@ test: $(NAME)
 	-./$(NAME) $(ARG9_500) | ../$(BON_NAME) $(ARG9_500)
 	-./$(NAME) $(ARG10_500) | wc -l
 	-./$(NAME) $(ARG10_500) | ../$(BON_NAME) $(ARG10_500)
-	-./$(NAME) $(ARG10_500)
+	# -./$(NAME) $(ARG10_500)
 	-./$(NAME) $(ARG11)
+	-./$(NAME) $(ARG11) | ../$(BON_NAME) $(ARG11)
 	-./$(NAME) $(ARG12)
+	-./$(NAME) $(ARG12) | ../$(BON_NAME) $(ARG12)
 
 norm:
 	norminette
