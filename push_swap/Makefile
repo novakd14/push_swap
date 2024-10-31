@@ -29,10 +29,11 @@ all: $(NAME)
 
 $(NAME): $(OBJS)
 	make -C $(CLIB_DIR) bonus
-	$(CC) -o $(NAME) $(OBJS) -L$(CLIB_DIR) -l$(CLIB)
+	$(CC) -o $@ $^ -L$(CLIB_DIR) -l$(CLIB)
 
 clean:
-	rm -f *.o
+	find . -name '*.o' -type f -delete
+	find . -name '*.a' -type f -delete
 
 fclean: clean
 	rm -f $(NAME)
