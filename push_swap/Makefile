@@ -4,9 +4,9 @@ CLIB_DIR = libft
 CLIB = ft
 
 NAME = push_swap
-BON_NAME = checker_linux
-SRCS = main.c input.c clean.c rules_swap.c rules_push.c rules_rotate.c rules_rev_rotate.c sort.c choose_to_move.c move_to_positions.c utils.c
-ALGO = adv_bubble_sort.c selection_sort.c minimalist_sort.c
+NAME_BONUS = checker_linux
+SRCS = main.c input.c utils.c clean.c sort.c rules_swap.c rules_rotate.c rules_rev_rotate.c rules_push.c # choose_to_move.c move_to_positions.c utils.c
+ALGO = radix_sort.c #adv_bubble_sort.c selection_sort.c minimalist_sort.c
 HEAD = push_swap.h
 OBJS = $(SRCS:.c=.o) $(ALGO:.c=.o)
 
@@ -28,7 +28,7 @@ ARG12 = 2 1 3 6 5 8
 all: $(NAME)
 
 $(NAME): $(OBJS)
-	make -C $(CLIB_DIR) bonus
+	make -C $(CLIB_DIR)
 	$(CC) -o $@ $^ -L$(CLIB_DIR) -l$(CLIB)
 
 clean:
@@ -41,37 +41,23 @@ fclean: clean
 re: fclean all
 
 test: $(NAME)
-	clear
-	-./$(NAME)
-	-./$(NAME) 0 one 2 3
-	-./$(NAME) $(ARG1) | wc -l
-	-./$(NAME) $(ARG1) | ../$(BON_NAME) $(ARG1)
-	-./$(NAME) $(ARG2) | wc -l
-	-./$(NAME) $(ARG2) | ../$(BON_NAME) $(ARG2)
-	-./$(NAME) $(ARG3) | wc -l
-	-./$(NAME) $(ARG3) | ../$(BON_NAME) $(ARG3)
-	-./$(NAME) $(ARG4) | wc -l
-	-./$(NAME) $(ARG4) | ../$(BON_NAME) $(ARG4)
-	-./$(NAME) $(ARG5) | wc -l
-	-./$(NAME) $(ARG5) | ../$(BON_NAME) $(ARG5)
-	-./$(NAME) $(ARG6_100) | wc -l
-	-./$(NAME) $(ARG6_100) | ../$(BON_NAME) $(ARG6_100)
-	-./$(NAME) $(ARG7_100) | wc -l
-	-./$(NAME) $(ARG7_100) | ../$(BON_NAME) $(ARG7_100)
-	-./$(NAME) $(ARG8_100) | wc -l
-	-./$(NAME) $(ARG8_100) | ../$(BON_NAME) $(ARG8_100)
-	-./$(NAME) $(ARG9_500) | wc -l
-	-./$(NAME) $(ARG9_500) | ../$(BON_NAME) $(ARG9_500)
-	-./$(NAME) $(ARG10_500) | wc -l
-	-./$(NAME) $(ARG10_500) | ../$(BON_NAME) $(ARG10_500)
-	# -./$(NAME) $(ARG10_500)
-	-./$(NAME) $(ARG11)
-	-./$(NAME) $(ARG11) | ../$(BON_NAME) $(ARG11)
-	-./$(NAME) $(ARG12)
-	-./$(NAME) $(ARG12) | ../$(BON_NAME) $(ARG12)
+	-./$<
+	-./$< 0
+	-./$< 0 1
+	-./$< 1 0
+	-./$< 0 1 2
+	-./$< 1 2 0
+	-./$< 2 0 1
+	-./$< 0 2 1
+	-./$< 1 0 2
+	-./$< 2 1 0
+	-./$< $(ARG7_100) | wc -l
+	-./$< $(ARG8_100) | wc -l
+	-./$< $(ARG9_500) | wc -l
+	-./$< $(ARG10_500)
 
 norm:
 	norminette
 
 memleak: $(NAME)
-	valgrind -s --leak-check=full --show-leak-kinds=all ./$(NAME) 42 -8 21 -2 -1 0
+	valgrind -s --leak-check=full --show-leak-kinds=all ./$< $(ARG)
