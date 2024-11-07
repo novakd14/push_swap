@@ -6,7 +6,7 @@
 /*   By: dnovak <dnovak@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/20 14:51:19 by dnovak            #+#    #+#             */
-/*   Updated: 2024/10/02 15:21:12 by dnovak           ###   ########.fr       */
+/*   Updated: 2024/11/07 20:19:42 by dnovak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,32 @@
 # define PUSH_SWAP_H
 
 # include "libft/libft.h"
-# include <stdlib.h>
+# include <stdlib.h> // exit(), EXIT_*
+# include <unistd.h> // write()
+
+# ifndef INT_MAX
+#  define INT_MAX 2147483647
+# endif
+
+# ifndef INT_MIN
+#  define INT_MIN -2147483648
+# endif
+
+# ifndef ERROR_MESS
+#  define ERROR_MESS "Error\n"
+# endif
+
+typedef enum e_status
+{
+	STATUS_ERROR = -1,
+	STATUS_SUCCESS = 0,
+}			t_status;
+
+typedef enum e_bool
+{
+	FALSE,
+	TRUE,
+}			t_bool;
 
 typedef struct s_stack
 {
@@ -29,6 +54,26 @@ typedef struct s_move
 	int		order;
 	int		moves;
 }			t_move;
+
+typedef struct s_data
+{
+	int		num;
+	int		index;
+}			t_data;
+
+// Input
+t_status	check_input(int argc, char **argv);
+void		load_input(int argc, char **argv, t_stack *stack);
+
+// Utils
+void		exit_message(t_status status, char *message);
+void		print_stack(t_stack *stack);
+
+// Clean
+void		del_content(void *data);
+
+// Sort algorithms
+void		radix_sort(t_stack *stack_a, t_stack *stack_b);
 
 void		free_all(t_stack *stack);
 void		error_exit(t_stack *stack);
@@ -51,8 +96,5 @@ void		ps_rev_rotate_all(t_stack *stack_a, t_stack *stack_b);
 void		adv_bubble_sort(int size, t_stack *stack_a, t_stack *stack_b);
 void		selection_sort(int size, t_stack *stack_a, t_stack *stack_b);
 void		minimalist_sort(t_stack *stack_a, t_stack *stack_b);
-
-// Utils
-void		print_stack(t_list *stack);
 
 #endif // PUSH_SWAP_H

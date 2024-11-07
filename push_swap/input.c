@@ -6,83 +6,114 @@
 /*   By: dnovak <dnovak@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/20 14:43:38 by dnovak            #+#    #+#             */
-/*   Updated: 2024/09/30 12:46:24 by dnovak           ###   ########.fr       */
+/*   Updated: 2024/11/07 14:56:22 by dnovak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static void	check_duplicate(int *content, t_stack *stack)
+static t_bool	ft_isnumber(char *nptr)
+{
+	int	i;
+
+	i = 0;
+	if (*nptr == '-' || *nptr == '+')
+		i++;
+	while (*(nptr + i) != '\0')
+	{
+		if (ft_isdigit(*(nptr + i)) == 0)
+			return (FALSE);
+		i++;
+	}
+	return (TRUE);
+}
+
+static t_bool	ft_isinteger(char *nptr)
+{
+	int	i;
+	int	res;
+	int	last_digit;
+
+	i = 0;
+	last_digit = INT_MAX % 10;
+	if (*nptr == '-' || *nptr == '+')
+	{
+		if (*nptr == '-')
+			last_digit = -(INT_MIN % 10);
+		i++;
+	}
+	res = 0;
+	while (*(nptr + i) != '\0')
+	{
+		if (res > INT_MAX / 10)
+			return (FALSE);
+		if (res == INT_MAX / 10 && (*(nptr + i) - '0') > last_digit)
+			return (FALSE);
+		res = res * 10 + (*(nptr + i) - '0');
+		i++;
+	}
+	return (TRUE);
+}
+
+t_status	check_input(int argc, char **argv)
+{
+	int	i;
+
+	i = 1;
+	while (i < argc)
+	{
+		if (ft_isnumber(argv[i]) == FALSE)
+			return (STATUS_ERROR);
+		if (ft_isinteger(argv[i]) == FALSE)
+			return (STATUS_ERROR);
+		i++;
+	}
+	return (STATUS_SUCCESS);
+}
+
+static t_status	check_duplicate(t_data *data, t_stack *stack)
 {
 	t_list	*check;
 
 	check = stack->stack;
 	while (check != NULL)
 	{
-		if (*((int *)check->content) == *content)
-		{
-			free(content);
-			error_exit(stack);
-		}
+		if (data->num == ((t_data *)check->content)->num)
+			return (STATUS_ERROR);
+		else if (data->num > ((t_data *)check->content)->num)
+			data->index += 1;
+		else
+			((t_data *)check->content)->index += 1;
 		check = check->next;
 	}
+	return (STATUS_SUCCESS);
 }
 
-static void	check_int(char *nptr, t_stack *stack)
-{
-	int	i;
-	int	res;
-	int	comp;
-
-	i = 1;
-	res = 0;
-	comp = -2147483647;
-	if (*nptr == '-')
-		comp = -2147483648;
-	else
-		i = 0;
-	while (ft_isdigit(*(nptr + i)))
-	{
-		if (res < comp / 10 || (res == comp / 10 && -(*(nptr + i) - '0') < comp
-				% 10))
-			error_exit(stack);
-		res = res * 10 - (*(nptr + i++) - '0');
-	}
-}
-
-static int	stack_len(t_list *stack)
-{
-	int	len;
-
-	len = 0;
-	while (stack != NULL)
-	{
-		len++;
-		stack = stack->next;
-	}
-	return (len);
-}
-
-void	input(int argc, char **argv, t_stack *a_stack)
+void	load_input(int argc, char **argv, t_stack *stack)
 {
 	int		i;
-	int		*content;
+	t_data	*content;
 	t_list	*new_node;
 
 	i = 1;
 	while (i < argc)
 	{
-		if (!ft_isdigit(*argv[i]) && (*argv[i] != '-' || !ft_isdigit(*(argv[i]
-						+ 1))))
-			error_exit(a_stack);
-		check_int(argv[i], a_stack);
-		content = (int *)malloc(sizeof(int));
+		content = (t_data *)malloc(sizeof(t_data));
 		if (content == NULL)
-			error_exit(a_stack);
-		*content = ft_atoi(argv[i++]);
-		check_duplicate(content, a_stack);
+		{
+			ft_lstclear(&(stack->stack), &del_content);
+			exit_message(STATUS_ERROR, ERROR_MESS);
+		}
+		content->num = ft_atoi(argv[i++]);
+		content->index = 0;
+		if (check_duplicate(content, stack) == STATUS_ERROR)
+		{
+			free(content);
+			ft_lstclear(&(stack->stack), &del_content);
+			exit_message(STATUS_ERROR, ERROR_MESS);
+		}
 		new_node = ft_lstnew(content);
-		ft_lstadd_back(&(a_stack->stack), new_node);
+		ft_lstadd_back(&(stack->stack), new_node);
 	}
-	a_stack->size = stack_len(a_stack->stack);
+	stack->size = ft_lstsize(stack->stack);
 }

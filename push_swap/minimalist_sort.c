@@ -6,36 +6,11 @@
 /*   By: dnovak <dnovak@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/26 14:40:42 by dnovak            #+#    #+#             */
-/*   Updated: 2024/10/02 15:20:34 by dnovak           ###   ########.fr       */
+/*   Updated: 2024/11/07 21:47:15 by dnovak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-static void	sort_rank_three(t_stack *stack)
-{
-	int	a;
-	int	b;
-	int	c;
-	int	order;
-
-	a = *((int *)stack->stack->content);
-	b = *((int *)stack->stack->next->content);
-	c = *((int *)stack->stack->next->next->content);
-	order = 0;
-	if (a > b)
-		order += 1;
-	if (b > c)
-		order += 2;
-	if (a > c)
-		order += 3;
-	if (order == 1 || order == 2 || order == 6)
-		ps_swap(stack);
-	if (order == 2 || order == 4)
-		ps_rotate(stack);
-	if (order == 5 || order == 6)
-		ps_rev_rotate(stack);
-}
 
 static void	return_order(int order, t_stack *stack_a)
 {
