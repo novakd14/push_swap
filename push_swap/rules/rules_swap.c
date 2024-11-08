@@ -1,42 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   rules_rotate.c                                     :+:      :+:    :+:   */
+/*   rules_swap.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dnovak <dnovak@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/02 15:00:16 by dnovak            #+#    #+#             */
-/*   Updated: 2024/10/02 15:19:49 by dnovak           ###   ########.fr       */
+/*   Created: 2024/10/02 14:54:40 by dnovak            #+#    #+#             */
+/*   Updated: 2024/11/08 11:54:46 by dnovak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../push_swap.h"
 
-static void	ps_rotate_utils(t_stack *stack)
+static void	ps_swap_utils(t_stack *stack)
 {
-	t_list	*first_to_last;
+	t_list	*second;
 
-	first_to_last = stack->stack;
-	stack->stack = first_to_last->next;
-	first_to_last->next = NULL;
-	ft_lstlast(stack->stack)->next = first_to_last;
+	second = stack->stack->next;
+	stack->stack->next = second->next;
+	second->next = stack->stack;
+	stack->stack = second;
 }
 
-// Shift up all elements of stack by 1. The first element becomes the last one.
-void	ps_rotate(t_stack *stack)
+void	ps_swap(t_stack *stack)
 {
 	if (stack->stack == NULL || stack->stack->next == NULL)
 		return ;
-	ps_rotate_utils(stack);
-	ft_printf("r%c\n", stack->name);
+	ps_swap_utils(stack);
+	ft_printf("s%c\n", stack->name);
 }
 
-void	ps_rotate_all(t_stack *stack_a, t_stack *stack_b)
+void	ps_swap_all(t_stack *stack_a, t_stack *stack_b)
 {
 	if ((stack_a->stack == NULL || stack_a->stack->next == NULL)
 		|| (stack_b->stack == NULL || stack_b->stack->next == NULL))
 		return ;
-	ps_rotate_utils(stack_a);
-	ps_rotate_utils(stack_b);
-	ft_printf("rr\n");
+	ps_swap_utils(stack_a);
+	ps_swap_utils(stack_b);
+	ft_printf("ss\n");
 }

@@ -6,18 +6,19 @@
 /*   By: dnovak <dnovak@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/17 10:41:23 by dnovak            #+#    #+#             */
-/*   Updated: 2024/11/08 08:16:54 by dnovak           ###   ########.fr       */
+/*   Updated: 2024/11/08 12:15:00 by dnovak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static int	init_stack(t_stack *stack, char name)
+static void	init_stack(t_stack *stack, char name)
 {
 	stack->name = name;
 	stack->stack = NULL;
 	stack->size = 0;
-	return (1);
+	stack->min_index = 0;
+	stack->max_index = 0;
 }
 
 int	main(int argc, char **argv)

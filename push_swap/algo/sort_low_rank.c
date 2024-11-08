@@ -6,11 +6,11 @@
 /*   By: dnovak <dnovak@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 08:11:36 by dnovak            #+#    #+#             */
-/*   Updated: 2024/11/08 08:13:57 by dnovak           ###   ########.fr       */
+/*   Updated: 2024/11/08 11:54:26 by dnovak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../push_swap.h"
 
 static int	find_min_index(t_stack *stack)
 {

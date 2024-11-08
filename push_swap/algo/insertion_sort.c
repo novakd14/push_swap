@@ -6,28 +6,11 @@
 /*   By: dnovak <dnovak@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 23:08:48 by dnovak            #+#    #+#             */
-/*   Updated: 2024/11/08 08:43:20 by dnovak           ###   ########.fr       */
+/*   Updated: 2024/11/08 11:54:21 by dnovak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
-
-static int	find_index(t_stack *stack, int target)
-{
-	t_list	*check;
-	int		i;
-
-	check = stack->stack;
-	i = 0;
-	while (check != NULL)
-	{
-		if (((t_data *)check->content)->index == target)
-			return (i);
-		check = check->next;
-		i++;
-	}
-	return (-1);
-}
+#include "../push_swap.h"
 
 static int	check_order(t_stack *stack, int index)
 {
