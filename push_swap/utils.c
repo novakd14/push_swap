@@ -6,7 +6,7 @@
 /*   By: dnovak <dnovak@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 14:21:03 by dnovak            #+#    #+#             */
-/*   Updated: 2024/11/08 08:39:03 by dnovak           ###   ########.fr       */
+/*   Updated: 2024/11/08 11:52:01 by dnovak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,22 +64,19 @@ void	setup_border_indicies(t_stack *stack)
 	}
 }
 
-void	rotate_to_top(t_stack *stack, int target)
+int	find_index(t_stack *stack, int target)
 {
-	int		i;
 	t_list	*check;
+	int		i;
 
 	check = stack->stack;
 	i = 0;
-	while (((t_data *)check->content)->index != target)
+	while (check != NULL)
 	{
+		if (((t_data *)check->content)->index == target)
+			return (i);
 		check = check->next;
 		i++;
 	}
-	if (i <= stack->size - i)
-		while (i-- > 0)
-			ps_rotate(stack);
-	else
-		while (i++ < stack->size)
-			ps_rev_rotate(stack);
+	return (-1);
 }

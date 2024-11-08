@@ -6,7 +6,7 @@
 /*   By: dnovak <dnovak@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 15:44:09 by dnovak            #+#    #+#             */
-/*   Updated: 2024/11/08 08:27:23 by dnovak           ###   ########.fr       */
+/*   Updated: 2024/11/08 11:50:39 by dnovak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,26 @@ static t_bool	ft_isrotated(t_stack *stack)
 	return (TRUE);
 }
 
+void	rotate_to_top(t_stack *stack, int target)
+{
+	int		i;
+	t_list	*check;
+
+	check = stack->stack;
+	i = 0;
+	while (((t_data *)check->content)->index != target)
+	{
+		check = check->next;
+		i++;
+	}
+	if (i <= stack->size - i)
+		while (i-- > 0)
+			ps_rotate(stack);
+	else
+		while (i++ < stack->size)
+			ps_rev_rotate(stack);
+}
+
 static void	push_back(t_stack *stack_a, t_stack *stack_b)
 {
 	int	index;
@@ -79,10 +99,20 @@ void	sort(t_stack *stack_a, t_stack *stack_b)
 		return ;
 	if (ft_isrotated(stack_a) == TRUE)
 		return (rotate_to_top(stack_a, 0));
-	if (stack_a->size <= 25)
+	if (stack_a->size <= 20)
 		return (sort_low_rank(stack_a, stack_b));
-	insertion_sort(stack_a, stack_b);
-	sort_low_rank(stack_a, stack_b);
-	rotate_to_top(stack_b, stack_b->max_index);
-	push_back(stack_a, stack_b);
+	if (stack_a->size <= 185)
+	{
+		insertion_sort(stack_a, stack_b);
+		sort_low_rank(stack_a, stack_b);
+		rotate_to_top(stack_b, stack_b->max_index);
+		push_back(stack_a, stack_b);
+	}
+	else
+	{
+		group_sort(stack_a, stack_b);
+		sort_low_rank(stack_a, stack_b);
+		push_back_groups(stack_a, stack_b);
+		rotate_to_top(stack_a, 0);
+	}
 }

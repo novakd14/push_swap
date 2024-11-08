@@ -1,28 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   rules_push.c                                       :+:      :+:    :+:   */
+/*   main_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dnovak <dnovak@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/09 20:31:24 by dnovak            #+#    #+#             */
-/*   Updated: 2024/10/02 15:07:03 by dnovak           ###   ########.fr       */
+/*   Created: 2024/11/08 11:30:37 by dnovak            #+#    #+#             */
+/*   Updated: 2024/11/08 12:08:32 by dnovak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "checker_bonus.h"
 
-void	ps_push(t_stack *from, t_stack *to)
+int	main(int argc, char **argv)
 {
-	t_list	*move;
-
-	if (from->stack == NULL)
-		return ;
-	move = from->stack;
-	from->stack = move->next;
-	move->next = to->stack;
-	to->stack = move;
-	from->size--;
-	to->size++;
-	ft_printf("p%c\n", to->name);
+	(void)argc;
+	(void)argv;
+	ft_printf("Checker\n");
+	return (EXIT_SUCCESS);
 }
