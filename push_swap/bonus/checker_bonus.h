@@ -6,7 +6,7 @@
 /*   By: dnovak <dnovak@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/20 14:51:19 by dnovak            #+#    #+#             */
-/*   Updated: 2024/11/08 11:38:20 by dnovak           ###   ########.fr       */
+/*   Updated: 2024/11/08 15:38:42 by dnovak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,26 +67,12 @@ typedef struct s_data
 t_status	check_input(int argc, char **argv);
 void		load_input(int argc, char **argv, t_stack *stack);
 
-// Sort
-void		sort(t_stack *stack_a, t_stack *stack_b);
-void		sort_low_rank(t_stack *stack_a, t_stack *stack_b);
-void		move_to_positions(int ra, int rb, t_stack *stack_a,
-				t_stack *stack_b);
+// Read
+void		read_instructions(t_stack *stack_a, t_stack *stack_b);
 
 // Utils
 void		exit_message(t_status status, char *message);
-void		print_stack(t_stack *stack);
-void		update_border_indicies(t_stack *update, t_list *values);
-void		setup_border_indicies(t_stack *update);
-void		rotate_to_top(t_stack *stack, int target);
-
-// Clean
 void		del_content(void *data);
-
-// Sort algorithms
-void		insertion_sort(t_stack *stack_a, t_stack *stack_b);
-void		group_sort(t_stack *stack_a, t_stack *stack_b);
-void		push_back_groups(t_stack *stack_a, t_stack *stack_b);
 
 // Rules
 void		ps_swap(t_stack *stack);
@@ -96,10 +82,5 @@ void		ps_rev_rotate(t_stack *stack);
 void		ps_swap_all(t_stack *stack_a, t_stack *stack_b);
 void		ps_rotate_all(t_stack *stack_a, t_stack *stack_b);
 void		ps_rev_rotate_all(t_stack *stack_a, t_stack *stack_b);
-
-// Sort algorithms
-void		adv_bubble_sort(int size, t_stack *stack_a, t_stack *stack_b);
-void		selection_sort(int size, t_stack *stack_a, t_stack *stack_b);
-void		minimalist_sort(t_stack *stack_a, t_stack *stack_b);
 
 #endif // CHECKER_BONUS_H
