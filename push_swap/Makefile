@@ -11,7 +11,8 @@ RULES_SRCS = rules_push.c rules_swap.c rules_rotate.c rules_rev_rotate.c
 ALGO_DIR = algo/
 ALGO_SRCS = sort_low_rank.c insertion_sort.c group_sort.c push_back_groups.c
 BONUS_DIR = bonus/
-BONUS_SRCS = main_bonus.c
+BONUS_SRCS = main_bonus.c input_bonus.c read_instructions_bonus.c utils_bonus.c \
+	rules_push_bonus.c rules_swap_bonus.c rules_rotate_bonus.c rules_rev_rotate_bonus.c
 HEAD = push_swap.h
 BONUS_HEAD = checker_bonus.h
 
