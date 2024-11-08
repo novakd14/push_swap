@@ -6,7 +6,7 @@
 /*   By: dnovak <dnovak@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 15:44:09 by dnovak            #+#    #+#             */
-/*   Updated: 2024/11/07 21:07:40 by dnovak           ###   ########.fr       */
+/*   Updated: 2024/11/08 08:27:23 by dnovak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,49 +45,32 @@ static t_bool	ft_isrotated(t_stack *stack)
 	return (TRUE);
 }
 
-static void	rotate_to_top(t_stack *stack)
+static void	push_back(t_stack *stack_a, t_stack *stack_b)
 {
-	int		i;
-	t_list	*check;
+	int	index;
+	int	last_index;
 
-	check = stack->stack;
-	i = 0;
-	while (((t_data *)check->content)->index != 0)
+	last_index = ((t_data *)ft_lstlast(stack_a->stack)->content)->index;
+	while (stack_b->stack != NULL)
 	{
-		check = check->next;
-		i++;
+		index = ((t_data *)stack_b->stack->content)->index;
+		if (index < stack_a->min_index || index > stack_a->max_index)
+		{
+			rotate_to_top(stack_a, stack_a->min_index);
+			update_border_indicies(stack_a, stack_b->stack);
+			ps_push(stack_b, stack_a);
+		}
+		else if (index > last_index)
+		{
+			update_border_indicies(stack_a, stack_b->stack);
+			ps_push(stack_b, stack_a);
+		}
+		else
+		{
+			ps_rev_rotate(stack_a);
+			last_index = ((t_data *)ft_lstlast(stack_a->stack)->content)->index;
+		}
 	}
-	if (i <= stack->size - i)
-		while (i-- > 0)
-			ps_rotate(stack);
-	else
-		while (i++ < stack->size)
-			ps_rev_rotate(stack);
-}
-
-static void	sort_rank_three(t_stack *stack)
-{
-	int	a;
-	int	b;
-	int	c;
-	int	order;
-
-	a = ((t_data *)stack->stack->content)->index;
-	b = ((t_data *)stack->stack->next->content)->index;
-	c = ((t_data *)stack->stack->next->next->content)->index;
-	order = 0;
-	if (a > b)
-		order += 1;
-	if (b > c)
-		order += 2;
-	if (a > c)
-		order += 3;
-	if (order == 1 || order == 2 || order == 6)
-		ps_swap(stack);
-	if (order == 2 || order == 4)
-		ps_rotate(stack);
-	if (order == 5 || order == 6)
-		ps_rev_rotate(stack);
 }
 
 void	sort(t_stack *stack_a, t_stack *stack_b)
@@ -95,8 +78,11 @@ void	sort(t_stack *stack_a, t_stack *stack_b)
 	if (ft_issorted(stack_a) == TRUE)
 		return ;
 	if (ft_isrotated(stack_a) == TRUE)
-		return (rotate_to_top(stack_a));
-	if (stack_a->size == 3)
-		return (sort_rank_three(stack_a));
-	radix_sort(stack_a, stack_b);
+		return (rotate_to_top(stack_a, 0));
+	if (stack_a->size <= 25)
+		return (sort_low_rank(stack_a, stack_b));
+	insertion_sort(stack_a, stack_b);
+	sort_low_rank(stack_a, stack_b);
+	rotate_to_top(stack_b, stack_b->max_index);
+	push_back(stack_a, stack_b);
 }

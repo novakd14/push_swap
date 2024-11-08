@@ -6,7 +6,7 @@
 /*   By: dnovak <dnovak@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/20 14:51:19 by dnovak            #+#    #+#             */
-/*   Updated: 2024/11/07 20:19:42 by dnovak           ###   ########.fr       */
+/*   Updated: 2024/11/08 08:39:08 by dnovak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,13 +46,15 @@ typedef struct s_stack
 	char	name;
 	t_list	*stack;
 	int		size;
+	int		min_index;
+	int		max_index;
 }			t_stack;
 
 typedef struct s_move
 {
 	int		position;
 	int		order;
-	int		moves;
+	int		steps;
 }			t_move;
 
 typedef struct s_data
@@ -65,23 +67,25 @@ typedef struct s_data
 t_status	check_input(int argc, char **argv);
 void		load_input(int argc, char **argv, t_stack *stack);
 
+// Sort
+void		sort(t_stack *stack_a, t_stack *stack_b);
+void		sort_low_rank(t_stack *stack_a, t_stack *stack_b);
+void		move_to_positions(int ra, int rb, t_stack *stack_a,
+				t_stack *stack_b);
+
 // Utils
 void		exit_message(t_status status, char *message);
 void		print_stack(t_stack *stack);
+void		update_border_indicies(t_stack *update, t_list *values);
+void		setup_border_indicies(t_stack *update);
+void		rotate_to_top(t_stack *stack, int target);
 
 // Clean
 void		del_content(void *data);
 
 // Sort algorithms
 void		radix_sort(t_stack *stack_a, t_stack *stack_b);
-
-void		free_all(t_stack *stack);
-void		error_exit(t_stack *stack);
-void		input(int argc, char **argv, t_stack *stack);
-int			choose_to_move(int start, t_stack *stack_a, t_stack *stack_b);
-void		sort(t_stack *stack_a, t_stack *stack_b);
-void		move_to_positions(int position, int order, t_stack *stack_a,
-				t_stack *stack_b);
+void		insertion_sort(t_stack *stack_a, t_stack *stack_b);
 
 // Rules
 void		ps_swap(t_stack *stack);
