@@ -6,7 +6,7 @@
 /*   By: dnovak <dnovak@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 23:08:48 by dnovak            #+#    #+#             */
-/*   Updated: 2024/11/08 11:54:21 by dnovak           ###   ########.fr       */
+/*   Updated: 2024/11/08 15:53:15 by dnovak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,8 +60,7 @@ static void	count_best_move(t_stack *stack_a, t_stack *stack_b, t_move *move,
 	t_list	*check;
 
 	check = stack_a->stack;
-	while (check != NULL && (move->position < best_move->steps
-			|| best_move->steps == -1))
+	while (check != NULL)
 	{
 		move->order = check_order(stack_b, ((t_data *)check->content)->index);
 		move->steps = count_steps(move->position, move->order, stack_a->size,

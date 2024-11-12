@@ -6,7 +6,7 @@
 /*   By: dnovak <dnovak@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/20 14:43:38 by dnovak            #+#    #+#             */
-/*   Updated: 2024/11/08 10:48:26 by dnovak           ###   ########.fr       */
+/*   Updated: 2024/11/10 21:54:24 by dnovak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ static t_bool	ft_isnumber(char *nptr)
 	int	i;
 
 	i = 0;
+	if (*nptr == '\0')
+		return (FALSE);
 	if (*nptr == '-' || *nptr == '+')
 		i++;
 	while (*(nptr + i) != '\0')
@@ -35,6 +37,8 @@ static t_bool	ft_isinteger(char *nptr)
 	int	last_digit;
 
 	i = 0;
+	if (*nptr == '\0')
+		return (FALSE);
 	last_digit = INT_MAX % 10;
 	if (*nptr == '-' || *nptr == '+')
 	{
