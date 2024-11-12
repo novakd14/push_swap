@@ -55,3 +55,6 @@ dkms.conf
 
 # VSCode files
 .vscode
+
+# Combination tester
+push_swap/comb_tester
