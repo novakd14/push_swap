@@ -6,7 +6,7 @@
 /*   By: dnovak <dnovak@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/20 14:51:19 by dnovak            #+#    #+#             */
-/*   Updated: 2024/11/08 15:38:42 by dnovak           ###   ########.fr       */
+/*   Updated: 2024/11/12 02:16:06 by dnovak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ typedef struct s_data
 
 // Input
 t_status	check_input(int argc, char **argv);
-void		load_input(int argc, char **argv, t_stack *stack);
+t_status	load_input(int argc, char **argv, t_stack *stack);
 
 // Read
 void		read_instructions(t_stack *stack_a, t_stack *stack_b);

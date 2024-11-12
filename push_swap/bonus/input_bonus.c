@@ -6,7 +6,7 @@
 /*   By: dnovak <dnovak@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/20 14:43:38 by dnovak            #+#    #+#             */
-/*   Updated: 2024/11/12 01:48:22 by dnovak           ###   ########.fr       */
+/*   Updated: 2024/11/12 02:16:18 by dnovak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,7 @@ static t_status	check_duplicate(t_data *data, t_stack *stack)
 	t_list	*check;
 
 	check = stack->stack;
+	data->index = 0;
 	while (check != NULL)
 	{
 		if (data->num == ((t_data *)check->content)->num)
@@ -91,7 +92,7 @@ static t_status	check_duplicate(t_data *data, t_stack *stack)
 	return (STATUS_SUCCESS);
 }
 
-void	load_input(int argc, char **argv, t_stack *stack)
+t_status	load_input(int argc, char **argv, t_stack *stack)
 {
 	int		i;
 	t_data	*content;
@@ -102,20 +103,20 @@ void	load_input(int argc, char **argv, t_stack *stack)
 	{
 		content = (t_data *)malloc(sizeof(t_data));
 		if (content == NULL)
-		{
-			ft_lstclear(&(stack->stack), &del_content);
-			exit_message(STATUS_ERROR, ERROR_MESS);
-		}
+			return (STATUS_ERROR);
 		content->num = ft_atoi(argv[i++]);
-		content->index = 0;
 		if (check_duplicate(content, stack) == STATUS_ERROR)
 		{
 			free(content);
-			ft_lstclear(&(stack->stack), &del_content);
-			exit_message(STATUS_ERROR, ERROR_MESS);
+			return (STATUS_ERROR);
 		}
 		new_node = ft_lstnew(content);
+		if (new_node == NULL)
+		{
+			free(content);
+			return (STATUS_ERROR);
+		}
 		ft_lstadd_back(&(stack->stack), new_node);
 	}
-	stack->size = ft_lstsize(stack->stack);
+	return (STATUS_SUCCESS);
 }

@@ -6,7 +6,7 @@
 /*   By: dnovak <dnovak@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/20 14:51:19 by dnovak            #+#    #+#             */
-/*   Updated: 2024/11/08 15:50:28 by dnovak           ###   ########.fr       */
+/*   Updated: 2024/11/12 02:09:23 by dnovak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ typedef struct s_data
 
 // Input
 t_status	check_input(int argc, char **argv);
-void		load_input(int argc, char **argv, t_stack *stack);
+t_status	load_input(int argc, char **argv, t_stack *stack);
 
 // Sort
 void		sort(t_stack *stack_a, t_stack *stack_b);
