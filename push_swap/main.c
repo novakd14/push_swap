@@ -6,7 +6,7 @@
 /*   By: dnovak <dnovak@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/17 10:41:23 by dnovak            #+#    #+#             */
-/*   Updated: 2024/11/08 12:15:00 by dnovak           ###   ########.fr       */
+/*   Updated: 2024/11/12 02:12:47 by dnovak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,12 @@ int	main(int argc, char **argv)
 	if (check_input(argc, argv) == STATUS_ERROR)
 		exit_message(STATUS_ERROR, ERROR_MESS);
 	init_stack(&stack_a, 'a');
-	load_input(argc, argv, &stack_a);
+	if (load_input(argc, argv, &stack_a) == STATUS_ERROR)
+	{
+		ft_lstclear(&(stack_a.stack), &del_content);
+		exit_message(STATUS_ERROR, ERROR_MESS);
+	}
+	stack_a.size = ft_lstsize(stack_a.stack);
 	init_stack(&stack_b, 'b');
 	sort(&stack_a, &stack_b);
 	ft_lstclear(&(stack_a.stack), &del_content);
