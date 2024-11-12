@@ -35,6 +35,8 @@
 *.i*86
 *.x86_64
 *.hex
+push_swap/push_swap
+push_swap/checker
 
 # Debug files
 *.dSYM/
