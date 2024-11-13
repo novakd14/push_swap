@@ -6,11 +6,11 @@
 /*   By: dnovak <dnovak@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 15:03:32 by dnovak            #+#    #+#             */
-/*   Updated: 2024/11/08 15:29:55 by dnovak           ###   ########.fr       */
+/*   Updated: 2024/11/12 13:57:14 by dnovak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../push_swap.h"
+#include "checker_bonus.h"
 
 static void	ps_rev_rotate_utils(t_stack *stack)
 {

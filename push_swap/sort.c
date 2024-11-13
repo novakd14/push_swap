@@ -6,7 +6,7 @@
 /*   By: dnovak <dnovak@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 15:44:09 by dnovak            #+#    #+#             */
-/*   Updated: 2024/11/08 11:50:39 by dnovak           ###   ########.fr       */
+/*   Updated: 2024/11/12 03:09:00 by dnovak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,6 +107,7 @@ void	sort(t_stack *stack_a, t_stack *stack_b)
 		sort_low_rank(stack_a, stack_b);
 		rotate_to_top(stack_b, stack_b->max_index);
 		push_back(stack_a, stack_b);
+		rotate_to_top(stack_a, 0);
 	}
 	else
 	{
