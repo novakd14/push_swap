@@ -6,7 +6,7 @@
 /*   By: dnovak <dnovak@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 23:08:48 by dnovak            #+#    #+#             */
-/*   Updated: 2024/11/08 15:53:15 by dnovak           ###   ########.fr       */
+/*   Updated: 2024/11/12 03:16:37 by dnovak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ void	insertion_sort(t_stack *stack_a, t_stack *stack_b)
 	else if (stack_b->max_index < ((t_data *)stack_a->stack->content)->index)
 		stack_b->max_index = ((t_data *)stack_a->stack->content)->index;
 	ps_push(stack_a, stack_b);
-	while (stack_a->size > 20)
+	while (stack_a->size > 15)
 	{
 		move.position = 0;
 		best_move.steps = -1;

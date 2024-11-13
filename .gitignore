@@ -58,3 +58,6 @@ dkms.conf
 
 # Combination tester
 push_swap/comb_tester
+
+# push_swap_visualizer
+push_swap_visualizer
