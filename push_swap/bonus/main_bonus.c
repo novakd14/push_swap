@@ -6,7 +6,7 @@
 /*   By: dnovak <dnovak@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 11:30:37 by dnovak            #+#    #+#             */
-/*   Updated: 2024/11/12 02:15:52 by dnovak           ###   ########.fr       */
+/*   Updated: 2024/11/13 23:24:52 by dnovak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,9 +57,9 @@ int	main(int argc, char **argv)
 	init_stack(&stack_b, 'b');
 	read_instructions(&stack_a, &stack_b);
 	if (ft_issorted(&stack_a) == TRUE && stack_b.stack == NULL)
-		write(STDOUT_FILENO, "OK\n", 4);
+		write(STDOUT_FILENO, "OK\n", 3);
 	else
-		write(STDOUT_FILENO, "KO\n", 4);
+		write(STDOUT_FILENO, "KO\n", 3);
 	ft_lstclear(&(stack_a.stack), &del_content);
 	ft_lstclear(&(stack_b.stack), &del_content);
 	return (EXIT_SUCCESS);
