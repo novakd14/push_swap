@@ -6,7 +6,7 @@
 /*   By: dnovak <dnovak@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/02 15:00:16 by dnovak            #+#    #+#             */
-/*   Updated: 2024/11/12 13:57:20 by dnovak           ###   ########.fr       */
+/*   Updated: 2024/11/14 15:13:11 by dnovak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,16 +25,14 @@ static void	ps_rotate_utils(t_stack *stack)
 // Shift up all elements of stack by 1. The first element becomes the last one.
 void	ps_rotate(t_stack *stack)
 {
-	if (stack->stack == NULL || stack->stack->next == NULL)
-		return ;
-	ps_rotate_utils(stack);
+	if (stack->stack != NULL && stack->stack->next != NULL)
+		ps_rotate_utils(stack);
 }
 
 void	ps_rotate_all(t_stack *stack_a, t_stack *stack_b)
 {
-	if ((stack_a->stack == NULL || stack_a->stack->next == NULL)
-		|| (stack_b->stack == NULL || stack_b->stack->next == NULL))
-		return ;
-	ps_rotate_utils(stack_a);
-	ps_rotate_utils(stack_b);
+	if (stack_a->stack != NULL && stack_a->stack->next != NULL)
+		ps_rotate_utils(stack_a);
+	if (stack_b->stack != NULL && stack_b->stack->next != NULL)
+		ps_rotate_utils(stack_b);
 }
