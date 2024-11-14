@@ -6,7 +6,7 @@
 /*   By: dnovak <dnovak@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/20 14:51:19 by dnovak            #+#    #+#             */
-/*   Updated: 2024/11/12 02:09:23 by dnovak           ###   ########.fr       */
+/*   Updated: 2024/11/14 01:22:00 by dnovak           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@ typedef struct s_data
 {
 	int		num;
 	int		index;
+	int		temp_index;
 }			t_data;
 
 // Input
@@ -69,10 +70,10 @@ t_status	load_input(int argc, char **argv, t_stack *stack);
 
 // Sort
 void		sort(t_stack *stack_a, t_stack *stack_b);
-void		sort_low_rank(t_stack *stack_a, t_stack *stack_b);
 void		move_to_positions(int ra, int rb, t_stack *stack_a,
 				t_stack *stack_b);
 void		rotate_to_top(t_stack *stack, int target);
+void		rotate_temp_to_top(t_stack *stack, int temp_target);
 
 // Utils
 void		exit_message(t_status status, char *message);
@@ -80,11 +81,16 @@ void		print_stack(t_stack *stack);
 void		update_border_indicies(t_stack *update, t_list *values);
 void		setup_border_indicies(t_stack *update);
 int			find_index(t_stack *stack, int target);
+void		set_temp_indicies(t_stack *stack);
 
 // Clean
 void		del_content(void *data);
 
 // Sort algorithms
+void		sort_rank_three(t_stack *stack);
+void		sort_rank_four(t_stack *stack);
+void		sort_rank_five(t_stack *stack_a, t_stack *stack_b);
+void		sort_low_rank(t_stack *stack_a, t_stack *stack_b);
 void		insertion_sort(t_stack *stack_a, t_stack *stack_b);
 void		group_sort(t_stack *stack_a, t_stack *stack_b);
 void		push_back_groups(t_stack *stack_a, t_stack *stack_b);

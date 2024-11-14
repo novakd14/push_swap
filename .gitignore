@@ -61,3 +61,6 @@ push_swap/comb_tester
 
 # push_swap_visualizer
 push_swap_visualizer
+
+# Log files
+*.log
